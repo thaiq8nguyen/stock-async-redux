@@ -1,14 +1,26 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Grid } from "semantic-ui-react";
 import SearchResults from "./SearchResults";
-const DashBoard = () => {
+import WatchList from "../WatchList/WatchList";
+const DashBoard = props => {
   return (
-    <Grid container columns="3" padded="vertically">
+    <Grid container columns="2" padded="vertically">
       <Grid.Column>
-        <SearchResults />
+        {props.searchResults.length > 0 && <SearchResults />}
+      </Grid.Column>
+
+      <Grid.Column>
+        <WatchList />
       </Grid.Column>
     </Grid>
   );
 };
-
-export default DashBoard;
+const mapStateToProps = state => ({
+  searchResults: state.searchResults,
+  watchList: state.watchList
+});
+export default connect(
+  mapStateToProps,
+  {}
+)(DashBoard);

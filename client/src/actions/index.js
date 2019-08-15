@@ -4,12 +4,14 @@ export const SET_SEARCH_QUERY = "SET_SEARCH_QUERY";
 export const SEARCH_STOCK_SYMBOL_STARTED = "SEARCH_STOCK_SYMBOL_STARTED";
 export const SEARCH_STOCK_SYMBOL_SUCCESS = "SEARCH_STOCK_SYMBOL_SUCCESS";
 export const SEARCH_STOCK_SYMBOL_FAILURE = "SEARCH_STOCK_SYMBOL_FAILURE";
+export const ADD_STOCK_TO_WATCH_LIST = "ADD_STOCK_TO_WATCH_LIST";
+export const REMOVE_SEARCH_RESULTS = "REMOVE_SEARCH_RESULTS";
 
 const client = axios.create({
-  baseURL: "https://sandbox.iexapis.com/stable"
+  baseURL: "https://cloud.iexapis.com/stable"
 });
 
-const token = process.env.REACT_APP_IEXCLOUD_SANDBOX_KEY;
+const token = process.env.REACT_APP_IEXCLOUD_PUBLIC_KEY;
 
 export const setSearchQuery = query => {
   return {
@@ -28,4 +30,22 @@ export const searchStockSymbol = symbol => dispatch => {
     .catch(error =>
       dispatch({ type: SEARCH_STOCK_SYMBOL_FAILURE, payload: error })
     );
+};
+
+export const addStockToWatchList = stock => {
+  return {
+    type: ADD_STOCK_TO_WATCH_LIST,
+    payload: {
+      symbol: stock.symbol,
+      shares: stock.shares,
+      dividendPaid: stock.dividendPaid,
+      paidFrequency: stock.paidFrequency
+    }
+  };
+};
+
+export const removeSearchResults = () => {
+  return {
+    type: REMOVE_SEARCH_RESULTS
+  };
 };

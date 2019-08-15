@@ -11,9 +11,9 @@ const Search = props => {
 
   return (
     <div>
-      <Menu>
+      <Menu style={{ backgroundColor: "#a9f1d0" }}>
         <Menu.Item>
-          <Menu.Header as="h3">Stock Client</Menu.Header>
+          <Menu.Header as="h1">Get Rich Slowly</Menu.Header>
         </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item>
@@ -27,10 +27,12 @@ const Search = props => {
                   type="text"
                   value={props.query}
                 />
-                <Form.Button type="submit">Search</Form.Button>
+                <Form.Button type="submit" primary>
+                  Search
+                </Form.Button>
               </Form.Group>
               <p style={{ textAlign: "left", color: "grey" }}>
-                Ex: AAPL,&nbsp;VZ,&nbsp;WMT,&nbsp;SBUX
+                Ex: AAPL,&nbsp;MSFT,&nbsp;COST,&nbsp;SBUX,&nbsp;KO,&nbsp;T
               </p>
             </Form>
           </Menu.Item>
